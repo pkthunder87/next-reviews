@@ -3,10 +3,6 @@
 import { useEffect } from "react";
 
 export default function HomePage() {
-  useEffect(() => {
-    window.alert("Welcome to my site!!!");
-  }, []);
-
   console.log("[HomePage] rendering");
   return (
     <>

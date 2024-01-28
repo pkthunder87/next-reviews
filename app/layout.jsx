@@ -23,7 +23,12 @@ export default function RootLayout({ children }) {
         </header>
 
         <main>{children}</main>
-        <footer>[footer]</footer>
+        <footer>
+          Game data and images courtesy of{" "}
+          <a href="https://rawg.io" target="_blank">
+            RAWG
+          </a>
+        </footer>
       </body>
     </html>
   );

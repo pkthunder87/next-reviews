@@ -1,4 +1,5 @@
 import Heading from '@/components/Heading';
+import ShareLinkButton from '@/components/ShareLinkButton';
 import { getReview, getSlugs } from '@/lib/reviews';
 
 export async function generateStaticParams() {
@@ -20,7 +21,10 @@ export default async function ReviewPage({ params: { slug } }) {
   return (
     <>
       <Heading>{review.title}</Heading>
-      <p className="pb-2 italic">{review.date}</p>
+      <div className="flex items-baseline gap-3">
+        <p className="pb-2 italic">{review.date}</p>
+        <ShareLinkButton />
+      </div>
       <img
         src={review.image}
         alt=""

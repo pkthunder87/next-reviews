@@ -1,8 +1,11 @@
+'use client';
+
 function ShareLinkButton() {
   const handleClick = () => {
     console.log('clicked!');
   };
 
+  console.log('[ShareLinkButton] rendering');
   return (
     <button
       onClick={handleClick}

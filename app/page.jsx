@@ -5,7 +5,7 @@ import { getFeaturedReview } from '@/lib/reviews';
 export default async function HomePage() {
   const featuredReview = await getFeaturedReview();
 
-  console.log('[HomePage] rendering');
+  // console.log('[HomePage] rendering');
   return (
     <>
       <Heading>Indie Gamer</Heading>

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Heading from '@/components/Heading';
 import { getReviews } from '@/lib/reviews';
 
-export const revalidate = 30; // seconds
 
 export default async function HomePage() {
   const featuredReviews = await getReviews(3);

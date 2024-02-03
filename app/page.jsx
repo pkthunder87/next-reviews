@@ -3,9 +3,8 @@ import Link from 'next/link';
 import Heading from '@/components/Heading';
 import { getReviews } from '@/lib/reviews';
 
-
 export default async function HomePage() {
-  const featuredReviews = await getReviews(3);
+  const { reviews: featuredReviews } = await getReviews(3);
 
   console.log(
     '[HomePage] rendering:',

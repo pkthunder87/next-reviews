@@ -1,6 +1,22 @@
-export default function CommentForm({ title }) {
+import { createComment } from '@/lib/comments';
+
+export default function CommentForm({ slug, title }) {
+  async function action(formData) {
+    'use server';
+
+    const message = await createComment({
+      slug,
+      user: formData.get('user'),
+      message: formData.get('message'),
+    });
+    console.log('created:', message);
+  }
+
   return (
-    <form className="mt-3 flex flex-col gap-2 rounded border bg-white px-3 py-3">
+    <form
+      action={action}
+      className="mt-3 flex flex-col gap-2 rounded border bg-white px-3 py-3"
+    >
       <p className="pb-1">
         Already played <strong>{title}</strong>? Have your say!
       </p>
@@ -8,7 +24,11 @@ export default function CommentForm({ title }) {
         <label htmlFor="userField" className="w-32 shrink-0">
           Your name
         </label>
-        <input id="userField" className="w-48 rounded border px-2 py-1" />
+        <input
+          id="userField"
+          name="user"
+          className="w-48 rounded border px-2 py-1"
+        />
       </div>
       <div className="flex">
         <label htmlFor="messageField" className="w-32 shrink-0">
@@ -16,6 +36,7 @@ export default function CommentForm({ title }) {
         </label>
         <textarea
           id="messageField"
+          name="message"
           className="w-full rounded border px-2 py-1"
         />
       </div>

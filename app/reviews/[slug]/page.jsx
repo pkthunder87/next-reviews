@@ -1,6 +1,9 @@
 import Image from 'next/image';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import { notFound } from 'next/navigation';
 import Heading from '@/components/Heading';
+import CommentList from '@/components/CommentList';
+import CommentForm from '@/components/CommentForm';
 import ShareLinkButton from '@/components/ShareLinkButton';
 import { getReview, getSlugs } from '@/lib/reviews';
 
@@ -48,6 +51,14 @@ export default async function ReviewPage({ params: { slug } }) {
         dangerouslySetInnerHTML={{ __html: review.body }}
         className="prose prose-slate max-w-screen-sm"
       />
+      <section className="mt-3 max-w-screen-sm border-t border-dashed py-3">
+        <h2 className="flex items-center gap-2 text-xl font-bold">
+          <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
+          Comments
+        </h2>
+        <CommentForm title={review.title} />
+        <CommentList />
+      </section>
     </>
   );
 }

@@ -4,19 +4,20 @@ import { createCommentAction } from '@/app/reviews/[slug]/actions';
 import { useState } from 'react';
 
 export default function CommentForm({ slug, title }) {
-  const [error, setError] = useState(null);
+  const [state, setState] = useState({ loading: false, error: null });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null);
+    setState({ loading: true, error: null });
     const form = event.currentTarget;
     const formData = new FormData(form);
     const result = await createCommentAction(formData);
 
     if (result?.isError) {
-      setError(result);
+      setState({ loading: false, error: result });
     } else {
       form.reset();
+      setState({ loading: false, error: null });
     }
   };
 
@@ -53,11 +54,14 @@ export default function CommentForm({ slug, title }) {
           className="w-full rounded border px-2 py-1"
         />
       </div>
-      {Boolean(error) && <p className="text-red-700">{error.message}</p>}
+      {Boolean(state.error) && (
+        <p className="text-red-700">{state.error.message}</p>
+      )}
       <button
         type="submit"
+        disabled={state.loading}
         className="w-32 self-center rounded bg-orange-800 px-2
-                     py-1 text-slate-50 hover:bg-orange-700"
+        py-1 text-slate-50 hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-slate-500"
       >
         Submit
       </button>

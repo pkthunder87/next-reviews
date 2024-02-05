@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 import { createComment } from '@/lib/comments';
 
 export async function createCommentAction(formData) {
-  if (!formData.get('user')) {
-    return { isError: true, message: 'Name field is required' };
-  }
+  // if (!formData.get('user')) {
+  //   return { isError: true, message: 'Name field is required' };
+  // }
 
   const data = {
     slug: formData.get('slug'),

@@ -1,11 +1,19 @@
-// 'use client';
+'use client';
 
 import { createCommentAction } from '@/app/reviews/[slug]/actions';
 
 export default function CommentForm({ slug, title }) {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const result = await createCommentAction(formData);
+    console.log('result:', result);
+  };
+
   return (
     <form
-      action={createCommentAction}
+      onSubmit={handleSubmit}
       className="mt-3 flex flex-col gap-2 rounded border bg-white px-3 py-3"
     >
       <p className="pb-1">

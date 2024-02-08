@@ -7,30 +7,12 @@ import CommentListSkeleton from '@/components/CommentListSkeleton';
 import CommentForm from '@/components/CommentForm';
 import Heading from '@/components/Heading';
 import ShareLinkButton from '@/components/ShareLinkButton';
-import { getReview, getSlugs } from '@/lib/reviews';
-
-export async function generateStaticParams() {
-  const slugs = await getSlugs();
-  // console.log('[ReviewPage] generateStaticParams:', slugs);
-  return slugs.map((slug) => ({ slug }));
-}
-
-export async function generateMetadata({ params: { slug } }) {
-  const review = await getReview(slug);
-
-  if (!review) {
-    notFound();
-  }
-  return {
-    title: review.title,
-  };
-}
+import { getReview } from '@/lib/reviews';
 
 export default async function ReviewPage({ params: { slug } }) {
   console.log('[ReviewPage] rendering:', slug);
   // simulate delay:
   // await new Promise((resolve) => setTimeout(resolve, 3000));
-
   const review = await getReview(slug);
   if (!review) {
     notFound();
